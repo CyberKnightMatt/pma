@@ -41,16 +41,10 @@ public class ProjectController {
     }
 
     @PostMapping(value="/save")
-    public String createProject(Project project, @RequestParam List<Long> employees, Model model) {
+    public String createProject(Project project, Model model) {
         projectRepository.save(project);
 
-        employeeRepository.findAllById(employees)
-            .forEach(employee -> {
-                employee.setProject(project);
-                employeeRepository.save(employee);
-            });
-
         // user a redirect to prevent duplicate submissions
-        return "redirect:/projects/new";
+        return "redirect:/projects";
     }
 }
