@@ -9,12 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import us.stallings.pma.dao.EmployeeRepository;
 import us.stallings.pma.entities.Employee;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(value ="/employees")
 public class EmployeeController {
 
     @Autowired
     EmployeeRepository employeeRepository;
+
+    @GetMapping
+    public String displayEmployees(Model model) {
+        List<Employee> employees = employeeRepository.findAll();
+        model.addAttribute("employees", employees);
+        return "employees/list-employees";
+    }
 
     @GetMapping("/new")
     public String displayEmployeeFrom(Model model) {

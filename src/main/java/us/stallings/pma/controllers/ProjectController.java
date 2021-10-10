@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import us.stallings.pma.dao.ProjectRepository;
+import us.stallings.pma.entities.Employee;
 import us.stallings.pma.entities.Project;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value="/projects")
@@ -15,6 +18,13 @@ public class ProjectController {
 
     @Autowired
     ProjectRepository projectRepository;
+
+    @GetMapping
+    public String displayProjects(Model model) {
+        List<Project> projects = projectRepository.findAll();
+        model.addAttribute("projects", projects);
+        return "projects/list-projects";
+    }
 
     @GetMapping("/new")
      public String displayProjectForm(Model model) {
