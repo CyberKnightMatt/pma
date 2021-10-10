@@ -1,9 +1,11 @@
 package us.stallings.pma.entities;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Project {
 
     @Id
@@ -17,6 +19,7 @@ public class Project {
     }
 
     public Project(String name, String stage, String description) {
+        super();
         this.name = name;
         this.stage = stage;
         this.description = description;
