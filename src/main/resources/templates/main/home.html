@@ -1,7 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="layouts :: header"></head>
-  <body>
-    <nav th:replace="layouts :: navbar"></nav>
-  </body>
+<head th:replace="layouts :: header"></head>
+  <nav th:replace="layouts :: navbar"></nav>
+<body>
+
+<div class="container">
+  <h3>Main Dashboard</h3>
+  <hr>
+  <h4>Current Projects</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+          <th>Project Name</th>
+          <th>Project Stage</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="project : ${projects}">
+          <td th:text="${project.name}" />
+          <td th:text="${project.stage}" />
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <canvas id="myPieChart" height="50" width="50"></canvas>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h4>Current Employees</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+          <th> First Name </th>
+          <th> Last Stage </th>
+          <th> Email </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employees}">
+          <td th:text="${employee.firstName}" />
+          <td th:text="${employee.lastName}" />
+          <td th:text="${employee.email}" />
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" th:src="@{js/myChart.js}"></script>
+</body>
 </html>
