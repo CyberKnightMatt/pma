@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import us.stallings.pma.dao.EmployeeRepository;
 import us.stallings.pma.dao.ProjectRepository;
-import us.stallings.pma.entities.Employee;
+import us.stallings.pma.dto.EmployeeProject;
 import us.stallings.pma.entities.Project;
 
 import java.util.List;
@@ -27,8 +27,8 @@ public class HomeController {
         model.addAttribute("projects",projects);
 
         // we are querying the database for employees
-        List<Employee> employees = employeeRepository.findAll();
-        model.addAttribute("employees",employees);
+        List<EmployeeProject> employeeList = employeeRepository.employeeProjects();
+        model.addAttribute("employeesList",employeeList);
         return "main/home";
     }
 }
