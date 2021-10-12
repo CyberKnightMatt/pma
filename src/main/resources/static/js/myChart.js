@@ -1,14 +1,31 @@
+const chartDataStr = decodeHtml(chartData);
+const chartJSONArray = JSON.parse(chartDataStr);
+
+const arrayLength = chartJSONArray.length;
+const numericData = chartJSONArray.map(element => element.value);
+const labelData = chartJSONArray.map(element => element.label);
+
 // For a pie chart
-var myPieChart = new Chart(document.getElementById("myPieChart"), {
+let myPieChart = new Chart(document.getElementById("myPieChart"), {
     type: 'pie',
     data: {
-        labels: ['January', 'February', 'March'],
+        labels: labelData,
         datasets: [{
             label: 'My First dataset',
             backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
-            borderColor: 'rgb(255,99,132)',
-            data: [5, 10, 5]
+            data: numericData
         }]
     },
-    options: {}
+    options: {
+        title: {
+            display: true,
+            text: 'Project Statues'
+        }
+    }
 });
+
+function decodeHtml(html) {
+    let txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+}
