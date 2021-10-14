@@ -10,7 +10,7 @@ import us.stallings.pma.entities.Project;
 import java.util.List;
 
 @RestController
-@RequestMapping("/app-api/employees")
+@RequestMapping("/app-api/projects")
 public class ProjectApiController {
 
     private final ProjectRepository projectRepository;

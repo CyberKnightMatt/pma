@@ -2,11 +2,13 @@ package us.stallings.pma.dao;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import us.stallings.pma.dto.EmployeeProject;
 import us.stallings.pma.entities.Employee;
 
 import java.util.List;
 
+@RepositoryRestResource(collectionResourceRel = "apiemployees", path="apiemployees")
 public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Long> {
     @Override
     List<Employee> findAll();
