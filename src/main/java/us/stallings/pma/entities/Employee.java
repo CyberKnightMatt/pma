@@ -1,7 +1,14 @@
 package us.stallings.pma.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 
 @Entity
 public class Employee {
@@ -9,8 +16,18 @@ public class Employee {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="employee_generator")
     @SequenceGenerator(name="employee_generator",sequenceName="employee_seq", allocationSize=1,initialValue=1)
     private long employeeId;
+
+    @NotNull
+    @Size(min=2, max=50)
     private String firstName;
+
+    @NotNull
+    @Size(min=1, max=50)
     private String lastName;
+
+    @NotNull
+    @Email
+    @Column(unique=true)
     private String email;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
@@ -19,6 +36,7 @@ public class Employee {
             joinColumns=@JoinColumn(name="employee_id"),
             inverseJoinColumns=@JoinColumn(name="project_id")
     )
+    @JsonIgnore
     private List<Project> projects;
 
     public Employee() {
