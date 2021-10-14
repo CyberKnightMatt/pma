@@ -1,6 +1,7 @@
 package us.stallings.pma.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import us.stallings.pma.validators.UniqueValue;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,7 +28,7 @@ public class Employee {
 
     @NotNull
     @Email
-    @Column(unique=true)
+    @UniqueValue
     private String email;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
