@@ -12,7 +12,7 @@
     <input type="text" placeholder="First Name" th:field="${employee.firstName}">
     <input type="text" placeholder="Last Name" th:field="${employee.lastName}">
     <input type="text" placeholder="Email" th:field="${employee.email}">
-
+    <input type="hidden" name="csrf" th:value="${_csrf.token}">
     <button type="submit">Add Employee</button>
 
   </form>
